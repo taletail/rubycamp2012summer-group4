@@ -17,7 +17,7 @@ class Player
     @y = y
     @pos = 0.0
 		@route_no = nil
-    img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "player.png")
+    img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "men0.png")
     @img = Image.load(img_file)
     @step = 0.05
     @hp = 100
@@ -43,7 +43,26 @@ class Player
   def check_event
     @map.points[@route_no][@pos.to_i].event
   end
-
+	
+	def img_change(age)
+		case age
+			when 10
+				img_name = "men10.png"
+			when 20
+				img_name = "men20.png"
+			when 40
+				img_name = "men40.png"
+			when 60
+				img_name = "men60.png"
+			when 80
+				img_name = "men80.png"
+			else
+				return
+		end
+		img_file = File.join(File.dirname(__FILE__), "..", "..", "images", img_name)
+    @img = Image.load(img_file)
+	end
+	
   def draw
     Window.draw(@x, @y, @img)
   end

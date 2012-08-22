@@ -60,6 +60,7 @@ class Game
 					@move_counter = 0.0
 					#加齢
 					@player.age += 10
+					@player.img_change(@player.age)
 				end
 			end
 			
@@ -69,6 +70,6 @@ class Game
     Window.drawFont(820,10,"しじみを手に入れた", @massage_font, color: [255,255,255])
 
     #年齢を表示させる
-    Window.drawFont(820, 230, "10歳", @age_font, color: [255,255,255])
+    Window.drawFont(820, 230, "#{@player.age}歳", @age_font, color: [255,255,255])
   end
 end
