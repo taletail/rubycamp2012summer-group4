@@ -20,21 +20,23 @@ class Game
     @dicing = true
     @move_counter = 0.0
 		@selecting = true
+    
+    @massage_font = Font(40, "ＭＳ ゴシック", weight: true)
+    
+    @age_font = Font.new(55, "ＭＳ ゴシック", weight: true)
   end
 
   def play
     # マップを描画
     @map.draw
-
-		# プレイヤーを描画
-		@player.draw
+    
+	# プレイヤーを描画
+	@player.draw
 				
-		#ここで分岐の選択を行い、選択したらfalseにする
-		@selecting = false
-		if @selecting
-		
-		else
-		
+	#ここで分岐の選択を行い、選択したらfalseにする
+	@selecting = false
+	if @selecting
+	else
 			if @dicing	#転がし中
 				@dice.rotate
 				#ダイスを描画
@@ -58,6 +60,11 @@ class Game
 			end
 			
 		end
-		#年齢を表示させる
+		
+    #メッセージを表示させる
+    Window.drawFont(820,10,"しじみを手に入れた", @massage_font, [255,255,255])
+
+    #年齢を表示させる
+    Window.drawFont(820, 230, "10歳", @age_font, [255,255,255])
   end
 end
