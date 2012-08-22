@@ -6,6 +6,7 @@
 class Player
 	attr_accessor :age
 	attr_accessor :items
+    attr_accessor :hp
 	
   def initialize(map, x = 391, y = 541)
 		@map = map
@@ -19,6 +20,7 @@ class Player
     img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "player.png")
     @img = Image.load(img_file)
     @step = 0.05
+    @hp = 100
   end
 
   def move(counter, route_no)

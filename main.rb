@@ -11,7 +11,10 @@ Window.height  = 600
 
 Scene.load_scenes
 
-Scene.set_scene(:title)
+$orochi_hp = 100
+$player = Player.new(nil)
+
+Scene.set_scene(:battle)
 
 Input.setRepeat(10,2)
 
