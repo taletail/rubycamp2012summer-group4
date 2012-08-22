@@ -60,8 +60,8 @@ class Map
 		points << route5
   end
 
-  def get_point_pos(pos)
-    return @points[pos].x, @points[pos].y
+  def get_point_pos(pos, route)
+    return @points[route][pos].x, @points[route][pos].y
   end
 
   def draw

@@ -32,11 +32,13 @@ class Game
         @dicing = false
       end
     else
-		  Scene.set_scene(:ending)
-			return
+		  #Scene.set_scene(:ending)
+			#return
       @dice.draw
+			
+			route_no = 0	#一番左のルート
       @move_counter = @dice.current_num if @move_counter == 0.0
-      @move_counter = @player.move(@move_counter)	#1マス進める
+      @move_counter = @player.move(@move_counter, route_no)	#1マス進める
       
 			if @move_counter <= 0.0
         @player.check_event
