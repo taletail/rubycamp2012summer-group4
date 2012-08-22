@@ -51,5 +51,9 @@ class Game
         @move_counter = 0.0
       end
     end
+
+    #年齢を表示させる
+    
+    
   end
 end
