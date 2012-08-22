@@ -30,13 +30,15 @@ class Game
     # マップを描画
     @map.draw
     
-	# プレイヤーを描画
-	@player.draw
+		# プレイヤーを描画
+		@player.draw
 				
-	#ここで分岐の選択を行い、選択したらfalseにする
-	@selecting = false
-	if @selecting
-	else
+
+		#ここで分岐の選択を行い、選択したらfalseにする、route_noに0～4で値を入れる
+		@selecting = false
+		if @selecting
+		
+		else
 			if @dicing	#転がし中
 				@dice.rotate
 				#ダイスを描画
@@ -56,6 +58,8 @@ class Game
 					#@player.check_event
 					@dicing = true
 					@move_counter = 0.0
+					#加齢
+					@player.age += 10
 				end
 			end
 			
