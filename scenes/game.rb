@@ -1,3 +1,8 @@
+=begin
+	サンプルでは2人用だったものを1人用に変更した。(津田)
+
+=end
+
 # coding: utf-8
 
 require_relative 'game/map'
@@ -8,8 +13,7 @@ class Game
   def initialize
     @all_items = []
     @map = Map.new
-    @players = [Player.new(@map), Player.new(@map)]
-    @current_player_num = 0
+    @player = Player.new(@map)
     @dice = Dice.new
     @dicing = true
     @move_counter = 0.0
@@ -17,10 +21,8 @@ class Game
 
   def play
     @map.draw
-    @players.each do |player|
-      player.draw
-    end
-
+		@player.draw
+		
     if @dicing	#転がし中
       @dice.rotate
       @dice.draw
@@ -30,13 +32,12 @@ class Game
     else
       @dice.draw
       @move_counter = @dice.current_num if @move_counter == 0.0
-      @move_counter = @players[@current_player_num].move(@move_counter)	#1マス進める
-      if @move_counter <= 0.0
-        @players[@current_player_num].check_event
+      @move_counter = @player.move(@move_counter)	#1マス進める
+      
+			if @move_counter <= 0.0
+        @player.check_event
         @dicing = true
         @move_counter = 0.0
-        @current_player_num += 1
-        @current_player_num = 0 if @current_player_num == @players.size
       end
     end
   end
