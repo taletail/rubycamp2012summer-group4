@@ -9,9 +9,9 @@ class Dice
     @images << Image.load(File.join(IMAGE_BASE, "dice1.png"))
     @images << Image.load(File.join(IMAGE_BASE, "dice2.png"))
     @images << Image.load(File.join(IMAGE_BASE, "dice3.png"))
-    @images << Image.load(File.join(IMAGE_BASE, "dice4.png"))
-    @images << Image.load(File.join(IMAGE_BASE, "dice5.png"))
-    @images << Image.load(File.join(IMAGE_BASE, "dice6.png"))
+    #@images << Image.load(File.join(IMAGE_BASE, "dice4.png"))
+    #@images << Image.load(File.join(IMAGE_BASE, "dice5.png"))
+    #@images << Image.load(File.join(IMAGE_BASE, "dice6.png"))
     @current_num = 0.0
   end
 

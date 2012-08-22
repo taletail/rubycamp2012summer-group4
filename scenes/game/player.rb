@@ -18,14 +18,15 @@ class Player
 		@route_no = nil
     img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "player.png")
     @img = Image.load(img_file)
-    @step = 0.1
+    @step = 0.05
   end
 
   def move(counter, route_no)
 		@route_no = route_no
 		
-    @pos += @step
+    
     @x, @y = @map.get_point_pos(@pos.to_i, @route_no)
+		@pos += @step
 		
     if @pos.to_i == @map.points[@route_no].size-1
 			@x = 391
