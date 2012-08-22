@@ -27,10 +27,14 @@ class Player
     @pos += @step
     @x, @y = @map.get_point_pos(@pos.to_i, @route_no)
 		
-    if @pos.to_i == @map.points[@route_no].size - 1
-      Scene.set_scene(:ending)
+    if @pos.to_i == @map.points[@route_no].size-1
+			@x = 391
+			@y = 541
+			@pos = 0.0
+      #Scene.set_scene(:ending)
+			return counter - @step.abs, false
     end
-    return counter - @step.abs
+    return counter - @step.abs, true
   end
 
   def check_event

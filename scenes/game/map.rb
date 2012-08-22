@@ -67,8 +67,7 @@ class Map
   def draw
     Window.draw(0, 0, @map_img)
     @points.each do |point|
-      #point.draw
-			point.each do |p|
+      point.each do |p|
 				p.draw
 			end
     end
