@@ -1,9 +1,9 @@
+# coding: utf-8
 =begin
 	サンプルでは2人用だったものを1人用に変更した。(津田)
 
 =end
 
-# coding: utf-8
 
 require_relative 'game/map'
 require_relative 'game/player'
@@ -14,6 +14,8 @@ class Game
     @all_items = []
     @map = Map.new
     @player = Player.new(@map)
+    $player = @player
+		
     @dice = Dice.new
     @dicing = true
     @move_counter = 0.0
@@ -30,6 +32,8 @@ class Game
         @dicing = false
       end
     else
+		  Scene.set_scene(:ending)
+			return
       @dice.draw
       @move_counter = @dice.current_num if @move_counter == 0.0
       @move_counter = @player.move(@move_counter)	#1マス進める

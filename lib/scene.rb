@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # ゲームのシーン（場面）を管理するクラス
 class Scene
   @@scenes = {}

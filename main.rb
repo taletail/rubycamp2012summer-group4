@@ -15,6 +15,9 @@ Scene.set_scene(:title)
 
 Input.setRepeat(10,2)
 
+$player = nil
+$orochi_hp = nil
+
 Window.loop do
   break if Input.keyPush?(K_ESCAPE)
   Scene.play

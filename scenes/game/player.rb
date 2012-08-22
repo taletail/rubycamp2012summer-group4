@@ -1,15 +1,17 @@
+# coding: utf-8
 =begin
 	@ageを追加(津田)
 =end
 
-# coding: utf-8
-
 class Player
 	attr_accessor :age
+	attr_accessor :items
 	
   def initialize(map, x = 250, y = 25)
 		@map = map
 		@age = 0
+		@items = []
+		
     @x = x
     @y = y
     @pos = 0.0
