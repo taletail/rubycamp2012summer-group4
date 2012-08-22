@@ -21,7 +21,7 @@ class Game
     @move_counter = 0.0
 		@selecting = true
     
-    @massage_font = Font(40, "ＭＳ ゴシック", weight: true)
+    @massage_font = Font.new(40, "ＭＳ ゴシック", weight: true)
     
     @age_font = Font.new(55, "ＭＳ ゴシック", weight: true)
   end
@@ -62,9 +62,9 @@ class Game
 		end
 		
     #メッセージを表示させる
-    Window.drawFont(820,10,"しじみを手に入れた", @massage_font, [255,255,255])
+    Window.drawFont(820,10,"しじみを手に入れた", @massage_font, color: [255,255,255])
 
     #年齢を表示させる
-    Window.drawFont(820, 230, "10歳", @age_font, [255,255,255])
+    Window.drawFont(820, 230, "10歳", @age_font, color: [255,255,255])
   end
 end
