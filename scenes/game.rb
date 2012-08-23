@@ -105,11 +105,11 @@ class Game
     Window.drawFont(170, 20, "SHIFTキーを押すと八岐大蛇と戦闘", @massage_font_large)
 
     #年齢を表示させる
-    Window.drawFont(820, 230, "#{@player.age}歳", @age_font, color: [255,255,255])
+    Window.drawFont(870, 240, "#{@player.age}歳", @age_font, color: [255,255,255])
 
 		#年の隣にアイコンを表示させる
     
-	  	Window.draw(950,250, @player.img)
+	  	Window.draw(820,240, @player.img)
 
     
     #アイテムを表示させる
