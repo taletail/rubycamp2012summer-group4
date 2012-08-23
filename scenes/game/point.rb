@@ -34,6 +34,7 @@ class Point
   def event(player)
     return false unless @event
     player.items[@event.item_no] += 1
+    @event = nil
   end
 
   def draw
