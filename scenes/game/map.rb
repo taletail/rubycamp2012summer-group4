@@ -5,11 +5,14 @@ require_relative 'event'
 
 class Map
   attr_reader :points
+	attr_accessor :current_route
 
   def initialize
     map_file = File.join(File.dirname(__FILE__), "..", "..", "images", "map.png")
     @map_img = Image.load(map_file)
+		@map_with_line_img = Image.new(1000, 600)
     @points = []
+		@current_route = 0
 		
 		route0 = []
 		route1 = []
@@ -65,7 +68,19 @@ class Map
   end
 
   def draw
-    Window.draw(0, 0, @map_img)
+		@map_with_line_img.draw(0, 0, @map_img)
+
+		#ƒ‰ƒCƒ“‚ðˆø‚­
+		(@points[@current_route].length - 1).times do |i|
+			x1 = points[@current_route][i].x + 20
+			y1 = points[@current_route][i].y + 20
+			x2 = points[@current_route][i + 1].x + 20
+			y2 = points[@current_route][i + 1].y + 20
+
+			@map_with_line_img.line(x1 ,y1 ,x2 ,y2 ,[255,255,255])
+		end
+
+    Window.draw(0, 0, @map_with_line_img)
     @points.each do |point|
       point.each do |p|
 				p.draw

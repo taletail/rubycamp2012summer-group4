@@ -35,6 +35,7 @@ class Game
 		elsif @select_route > 4.0
 			@select_route = 4.0
 		end
+		@map.current_route = @select_route.to_i
 		
 		if Input.keyPush?(K_SPACE)
 			@selecting = false
@@ -44,6 +45,7 @@ class Game
   def play
     # マップを描画
     @map.draw
+
 		# プレイヤーを描画
 		@player.draw
 		
@@ -82,7 +84,7 @@ class Game
 		end
 		
     #メッセージを表示させる
-    Window.drawFont(815,10,"取得アイテムリスト\nルート#{@select_route.to_i}", @massage_font_small, color: [255,255,255])
+    Window.drawFont(820,10,"取得アイテムリスト", @massage_font, color: [255,255,255])
 
     #年齢を表示させる
     Window.drawFont(820, 230, "#{@player.age}歳", @age_font, color: [255,255,255])
@@ -95,6 +97,9 @@ class Game
 				Window.draw(x, y, ITEMS[i].image)
 				Window.drawFont(x + 35, y + 35, @player.items[i].to_s, @num_items_font, color: [50,50,200])
 			end
+			
+
+
 		end
 
   end
