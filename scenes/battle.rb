@@ -121,21 +121,20 @@ class Battle
     when 6
       case $player.age
       when 0
-        player_image = men0.png
-      when 10
-        player_image = men10.png
-      when 20
-        player_image = men20.png
-      when 40
-        player_image = men40.png
-      when 60
-        player_image = men60.png
-      when 80
-        player_image = men80.png
+        player_image = "men0.png"
+      when 10..19
+        player_image = "men10.png"
+      when 20..39
+        player_image = "men20.png"
+      when 40..59
+        player_image = "men40.png"
+      when 60..79
+        player_image = "men60.png"
+      when 80..110
+        player_image = "men80.png"
       end
 
-      img_file = File.join(File.dirname(__FILE__), "..", "..", "images", player_image)
-      @item_ef = Image.load("img_file")
+      @item_ef = Image.load("./images/#{player_image}")
       sound = Sound.new("./sound./sude.wav")
       @draw_x += 6
       @draw_y -= 2
