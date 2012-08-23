@@ -118,7 +118,8 @@ class Game
 				x = 840 + (i < 3 ? 0 : 1) * 80
 				y = 340 + (i % 3) * 80
 				Window.draw(x, y, ITEMS[i].image)
-				Window.drawFont(x + 35, y + 35, @player.items[i].to_s, @num_items_font, color: [50,50,200])
+				Window.drawFont(x + 35 + 1, y + 35 + 1, @player.items[i].to_s, @num_items_font, color: [0,0,0])
+				Window.drawFont(x + 35, y + 35, @player.items[i].to_s, @num_items_font, color: [190,230,244])
 			end
 			
 
