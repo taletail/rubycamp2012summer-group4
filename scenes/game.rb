@@ -1,11 +1,8 @@
 # coding: cp932
 
-
 require_relative 'game/map'
 require_relative 'game/player'
 require_relative 'game/dice'
-
-
 
 class Game
   def initialize
@@ -78,8 +75,15 @@ class Game
 				@move_counter, @selecting = @player.move(@move_counter, route_no)	#1マス進める
 				
 				if @move_counter <= 0.0 || @selecting
-					if item = @player.check_event
-						@message_item = "▼#{item.name}\nを拾った!"
+					#最後のマスを通りすぎるようならイベント確認しない
+					if @move_counter <= 0.0
+						name = @player.check_event
+					else 
+						name = false
+					end
+					
+					if name
+						@message_item = "▼#{name}\nを拾った!"
 					end
 					
 					@dicing = true
@@ -114,8 +118,7 @@ class Game
     Window.drawFont(870, 240, "#{@player.age}歳", @age_font, color: [255,255,255])
     Window.drawFont(840, 80, "HP:#{@player.hp}", @message_font_large)
 		#年の隣にアイコンを表示させる
-    
-	  	Window.draw(820,240, @player.img)
+	  Window.draw(820,240, @player.img)
 
     
     #アイテムを表示させる

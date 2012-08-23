@@ -37,7 +37,7 @@ class Point
     player.items[@event.item_no] += 1
 		item = ITEMS.find { |i| i.no == @event.item_no }
 		@event = nil
-		return item
+		return item.name
   end
 
   def draw

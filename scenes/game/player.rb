@@ -43,10 +43,8 @@ class Player
 		@route_no = route_no 
     
 		self.animation
-		#@x, @y = @map.get_point_pos(@pos.to_i, @route_no)
 		@pos += @step
 		
-
 		#’[‚Ü‚Å—ˆ‚½‚ç‰Šú‰»‚·‚é
 		if @pos.to_i >= @map.points[@route_no].size
 			@x = START_X
