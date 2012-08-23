@@ -47,7 +47,6 @@ class Game
 			Scene.set_scene(:battle)
 		end
 		
-		
 		if @selecting
 			select
 		else

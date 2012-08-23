@@ -44,19 +44,19 @@ class Player
 	def img_change(age)
 		case age
 		when 10
-			img_name = "men10.png"
+			char_img = "men10.png"
 		when 20
-			img_name = "men20.png"
+			char_img = "men20.png"
 		when 40
-			img_name = "men40.png"
+			char_img = "men40.png"
 		when 60
-			img_name = "men60.png"
+			char_img = "men60.png"
 		when 80
-			img_name = "men80.png"
+			char_img = "men80.png"
 		else
 			return
 		end
-		img_file = File.join(File.dirname(__FILE__), "..", "..", "images", img_name)
+		img_file = File.join(File.dirname(__FILE__), "..", "..", "images", char_img)
     @img = Image.load(img_file)
 	end
 	

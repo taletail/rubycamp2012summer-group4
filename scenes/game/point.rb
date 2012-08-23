@@ -3,7 +3,7 @@
 class Point
   attr_accessor :x, :y
 
-  def initialize(x, y, opt = {})
+  def initialize(x, y, route_no, opt = {})
     @x = x
     @y = y
     @img_flag = opt[:image] || true
@@ -11,7 +11,23 @@ class Point
 		if @event
 		  @event.point = self
 		end
-    img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "point.png")
+		
+		case route_no
+		when 0
+			point_img = "./color/bpoint.png"
+		when 1
+			point_img = "./color/gpoint.png"
+		when 2
+			point_img = "./color/point.png"
+		when 3
+			point_img = "./color/rpoint.png"
+		when 4
+			point_img = "./color/ypoint.png"
+		else
+			return
+		end
+		
+    img_file = File.join(File.dirname(__FILE__), "..", "..", "images", point_img)
     @point_img = Image.load(img_file)
   end
 
