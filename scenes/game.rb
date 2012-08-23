@@ -5,6 +5,8 @@ require_relative 'game/map'
 require_relative 'game/player'
 require_relative 'game/dice'
 
+
+
 class Game
   def initialize
     @all_items = []
@@ -21,6 +23,9 @@ class Game
     
 		@massage_font = Font.new(40, "ＭＳ ゴシック", weight: true)
     @age_font = Font.new(55, "ＭＳ ゴシック", weight: true)
+ 		
+		#アイテム
+
   end
 
 	def select
@@ -82,5 +87,13 @@ class Game
 
     #年齢を表示させる
     Window.drawFont(820, 230, "#{@player.age}歳", @age_font, color: [255,255,255])
+    
+    #アイテムを表示させる
+    Image.load('soroban.png') #そろばんを読み込む
+	
+	#if 
+	 #Window.loop do
+    #   Window.draw(700, 700, image)
+    # end
   end
 end
