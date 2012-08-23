@@ -32,7 +32,6 @@ class Game
 			@select_route = 4.0
 		end
 		
-		p @select_route
 		if Input.keyPush?(K_SPACE)
 			@selecting = false
 		end

@@ -24,9 +24,7 @@ class Player
   end
 
   def move(counter, route_no)
-		@route_no = route_no
-		
-    
+		@route_no = route_no 
     @x, @y = @map.get_point_pos(@pos.to_i, @route_no)
 		@pos += @step
 		
