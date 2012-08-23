@@ -1,7 +1,4 @@
-# coding: utf-8
-=begin
-	@ageã‚’è¿½åŠ (æ´¥ç”°)
-=end
+# coding: cp932
 
 class Player
 	attr_accessor :age
@@ -49,7 +46,8 @@ class Player
 		#@x, @y = @map.get_point_pos(@pos.to_i, @route_no)
 		@pos += @step
 		
-		#ç«¯ã¾ã§æ¥ãŸã‚‰åˆæœŸåŒ–ã™ã‚‹
+
+		#’[‚Ü‚Å—ˆ‚½‚ç‰Šú‰»‚·‚é
 		if @pos.to_i >= @map.points[@route_no].size
 			@x = START_X
 			@y = START_Y
@@ -58,9 +56,9 @@ class Player
     end
     return counter - @step.abs, false
   end
-
+	
   def check_event
-    @map.points[@route_no][@pos.to_i - 1].event(self)
+    return @map.points[@route_no][@pos.to_i - 1].event(self)
   end
 	
 	def img_change(age)

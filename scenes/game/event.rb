@@ -9,10 +9,6 @@ class Event
 	  @item = ITEMS.find { |i| i.name == item_name }
 	  @item_no = @item.no
   end
-
-	def get_item
-    puts "Event occurred."
-  end
 	
 	def draw(x, y)
 		Window.draw(x, y, @item.image)

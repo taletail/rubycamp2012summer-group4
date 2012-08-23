@@ -33,8 +33,11 @@ class Point
 
   def event(player)
     return false unless @event
+		
     player.items[@event.item_no] += 1
-    @event = nil
+		item = ITEMS.find { |i| i.no == @event.item_no }
+		@event = nil
+		return item
   end
 
   def draw

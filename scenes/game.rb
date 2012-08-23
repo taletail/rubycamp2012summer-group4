@@ -21,6 +21,8 @@ class Game
 		@selecting = true
     @select_route = 0.0
     
+		@message_item = ""
+		
 		@massage_font = Font.new(22, "ＭＳ ゴシック", weight: true)
 		@massage_font_large = Font.new(30)
     @age_font = Font.new(55, "ＭＳ ゴシック", weight: true)
@@ -49,6 +51,9 @@ class Game
 		# プレイヤーを描画
 		@player.draw
 		
+		#アイテム取得メッセージを表示させる
+		self.draw_get_item
+		
 		if Input.keyPush?(K_LSHIFT)
       $player = @player
 			Scene.set_scene(:battle)
@@ -73,7 +78,10 @@ class Game
 				@move_counter, @selecting = @player.move(@move_counter, route_no)	#1マス進める
 				
 				if @move_counter <= 0.0 || @selecting
-					@player.check_event
+					if item = @player.check_event
+						@message_item = "▼#{item.name}\nを拾った!"
+					end
+					
 					@dicing = true
 					@move_counter = 0.0
 					#加齢
@@ -81,13 +89,13 @@ class Game
 					
 					case @player.age
 					when 1..30
-						@player.hp = 150
+						@player.hp = 150.00
 					when 31..60
-						@player.hp = 100
+						@player.hp = 100.00
 					when 61..80
-						@player.hp = 70
+						@player.hp = 70.00
 					when 81..109
-						@player.hp = 40
+						@player.hp = 40.00
 					end
 					
 					@player.img_change(@player.age)
@@ -96,8 +104,7 @@ class Game
 					$player = @player
 					Scene.set_scene(:ending)
 				end
-			end
-			
+			end	
 		end
 		
     #メッセージを表示させる
@@ -121,10 +128,11 @@ class Game
 				Window.drawFont(x + 35 + 1, y + 35 + 1, @player.items[i].to_s, @num_items_font, color: [0,0,0])
 				Window.drawFont(x + 35, y + 35, @player.items[i].to_s, @num_items_font, color: [190,230,244])
 			end
-			
-
-
 		end
 
   end
+	
+	def draw_get_item
+		Window.drawFont(818,10,@message_item, @massage_font, color: [255,255,255])
+	end
 end
