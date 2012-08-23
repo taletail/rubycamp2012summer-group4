@@ -9,7 +9,7 @@ class Ending
 		@age = $player.age
 		@won = ($orochi_hp <= 0)#@wonの判定は1で勝ち0で負けに変えておく
 		if @won
-			case @age 
+			case @age
 				when 0
 					bg_file = File.join(File.dirname(__FILE__),"..","images", "end0sai.png")#whenの部分に年齢を書く。年齢に応じた画像に書き換える。
 				when 1..20
