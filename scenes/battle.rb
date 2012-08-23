@@ -93,7 +93,7 @@ class Battle
         sound = Sound.new("./sound./tatara.wav")
         sound.play
       end
-      @item_ef = Image.load("./images/tatara.png")
+      @item_ef = Image.load("./images/nihonto.png")
       @draw_x += 6
       @draw_y = 300 + (1.6 * @count * @count) - (80 * @count)
       @draw_y -= 2 * @count
