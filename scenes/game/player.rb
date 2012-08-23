@@ -6,12 +6,14 @@
 class Player
 	attr_accessor :age
 	attr_accessor :items
-    attr_accessor :hp
+  attr_accessor :hp
+  attr_accessor :pos
+	
 	
   def initialize(map, x = 391, y = 541)
 		@map = map
 		@age = 0
-		@items = []
+		@items = Array.new(ITEMS.length) { 0 }
 		
     @x = x
     @y = y
@@ -38,7 +40,7 @@ class Player
   end
 
   def check_event
-    @map.points[@route_no][@pos.to_i].event
+    @map.points[@route_no][@pos.to_i - 1].event(self)
   end
 	
 	def img_change(age)

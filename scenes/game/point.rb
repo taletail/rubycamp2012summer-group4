@@ -31,15 +31,15 @@ class Point
     @point_img = Image.load(img_file)
   end
 
-  def event
+  def event(player)
     return false unless @event
-    @event.exec
+    player.items[@event.item_no] += 1
   end
 
   def draw
     Window.draw(@x, @y, @point_img) if @img_flag
 		if @event
-		  @event.draw
+		  @event.draw(@x, @y)
 		end
   end
 end

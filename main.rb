@@ -1,4 +1,4 @@
-# coding: utf-8
+# coding: cp932
 
 require 'dxruby'
 require 'dxrubyex'
@@ -18,10 +18,6 @@ $player = Player.new(nil)
 Scene.set_scene(:title)
 
 Input.setRepeat(10,2)
-
-
-$player = nil
-$orochi_hp = nil
 
 Window.loop do
   break if Input.keyPush?(K_ESCAPE)

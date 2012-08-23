@@ -50,7 +50,7 @@ class Game
 		end
 		
 		if @selecting
-			select
+			self.select
 		else
 			if @dicing	#“]‚ª‚µ’†
 				@dice.rotate
@@ -68,7 +68,10 @@ class Game
 				@move_counter, @selecting = @player.move(@move_counter, route_no)	#1ƒ}ƒXi‚ß‚é
 				
 				if @move_counter <= 0.0 || @selecting
-					#@player.check_event
+					if @move_counter <= 0.0
+						@player.check_event
+					end
+					
 					@dicing = true
 					@move_counter = 0.0
 					#‰Á—î
