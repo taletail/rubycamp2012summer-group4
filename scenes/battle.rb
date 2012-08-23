@@ -1,6 +1,5 @@
 # coding: cp932
 
-#   $player_hp を $player.hp に
 class Battle
   def initialize
 
@@ -16,9 +15,18 @@ class Battle
     @orochi = Image.load("./images/orochii01.png")
     #@player = Image.load("images/ man#{$player.age}.png")
 #
+
+    @item = ["シジミ", "算盤", "出雲そば", "日本刀", "飛び魚", "島根ワイン", "自分"]
+    @message1 = "八岐大蛇があらわれた"
+    @message2 = ""
+    @message3 = ""
+    @message4 = ""
+  end
+  
+  def switched_this_scene
     @orochi_hp = 100
-    @hp_max = 100.00
-    @hp_now = 100.00
+    @hp_max = $player.hp
+    @hp_now = $player.hp
 #
     @command = 0
     @count = 0
@@ -30,13 +38,7 @@ class Battle
     @spin = 0.00
 
     $won = 0
-    $player_hp = 100
-
-    @item = ["シジミ", "算盤", "出雲そば", "日本刀", "飛び魚", "島根ワイン", "自分"]
-    @message1 = "八岐大蛇があらわれた"
-    @message2 = ""
-    @message3 = ""
-    @message4 = ""
+  
   end
 
   def play
@@ -136,11 +138,13 @@ class Battle
     Window.drawFont(300, 400, "#{@message2}", @font)
     if @orochi_hp <= 0
       $won = 1 
-    elsif $player_hp > 0
+      Scene.set_scene(:ending)
+    elsif $player.hp > 0
       Window.drawFont(300, 430, "#{@message3}", @font)
       Window.drawFont(300, 460, "#{@message4}", @font)
     else
-      $won = 2 if $player_hp <= 0
+      $won = 2 if $player.hp <= 0
+      Scene.set_scene(:ending)
     end
 
 #   HP描写
@@ -152,7 +156,7 @@ class Battle
     aka = 50 + (205 * per / 100)
     Window.drawMorph(850, per1, 950, per1, 950, 490, 850, 490, @hp_bac_img, {:alpha => aka})
 #   $player.hp に変更
-    @hp_now = 50
+    @hp_now = $player.hp
 #
 #   矢印の移動、描写
     @command += 1 if Input.keyPush?(K_DOWN)
@@ -190,7 +194,7 @@ class Battle
 
         @orochi_hp -= orochi_damage
 
-        $player_hp -= player_damage
+        $player.hp -= player_damage
 #      end
     end
 
