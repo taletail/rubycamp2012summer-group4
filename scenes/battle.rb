@@ -30,7 +30,7 @@ class Battle
     $won = 0
 
     @item = ["シジミ", "算盤", "出雲そば", "玉鋼", "飛び魚", "島根ワイン", "自分"]
-    @message1 = ""
+    @message1 = "八岐大蛇があらわれた"
     @message2 = ""
     @message3 = ""
     @message4 = ""
@@ -54,6 +54,7 @@ class Battle
     case @select
     when 0
       @item_ef = Image.load("./images/shizimi.png")
+      sound = Sound.new("./sound./shizimi.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -62,6 +63,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 1
       @item_ef = Image.load("./images/soroban.png")
+      sound = Sound.new("./sound./soroban.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -70,6 +72,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 2
       @item_ef = Image.load("./images/soumen.png")
+      sound = Sound.new("./sound./soumen.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -77,6 +80,10 @@ class Battle
       @spin += 1.8
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 3
+      if @count == 1
+        sound = Sound.new("./sound./tatara.wav")
+        sound.play
+      end
       @item_ef = Image.load("./images/tatara.png")
       @draw_x += 6
       @draw_y = 300 + (1.6 * @count * @count) - (80 * @count)
@@ -87,6 +94,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 4
       @item_ef = Image.load("./images/tobiuo.png")
+      sound = Sound.new("./sound./tobiuo.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -94,6 +102,7 @@ class Battle
       Window.drawScale(@draw_x, @draw_y, @item_ef, @scale_x, @scale_y)
     when 5
       @item_ef = Image.load("./images/wine.png")
+      sound = Sound.new("./sound./wine.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -111,6 +120,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     end
     if @draw_x == 500
+      sound.play if @select != 3
       @draw_x = 200
       @draw_y = 300
       @scale_x = -1.00
@@ -165,15 +175,15 @@ class Battle
 #      cal damage
         orochi_damage = 50
         player_damage = 50
-        @message1 = "#{@items[@select]}を投げつけた"
+        @message1 = "#{@item[@select]}を投げつけた"
         @message2 = "八岐大蛇に#{orochi_damage}のダメージ"
         @message3 = "八岐大蛇の攻撃"
         @message4 = "プレイヤーに#{player_damage}のダメージ"
 
 
-        $orochi_hp -= orochi_damage
+#        $orochi_hp -= orochi_damage
 
-        $player.hp -= player_damage
+#        $player.hp -= player_damage
 #      end
     end
 

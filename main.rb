@@ -29,12 +29,12 @@ class Item
 end
 
 ITEMS = [
-	Item.new(0, "シジミ", 50),
+	Item.new(0, "シジミ", 10),
 	Item.new(1, "算盤", 50),
 	Item.new(2, "出雲そば", 50),
 	Item.new(3, "玉鋼", 50),
 	Item.new(4, "飛び魚", 50),
-	Item.new(5, "島根ワイン", 50)
+	Item.new(5, "島根ワイン", 10)
 ]
 
 $player = nil
