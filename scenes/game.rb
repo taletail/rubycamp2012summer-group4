@@ -1,4 +1,4 @@
-# coding: utf-8
+# coding: cp932
 
 
 require_relative 'game/map'
@@ -21,15 +21,12 @@ class Game
 		@selecting = true
     @select_route = 0.0
     
-		@massage_font = Font.new(40, "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", weight: true)
-    @age_font = Font.new(55, "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", weight: true)
- 		
-		#ã‚¢ã‚¤ãƒ†ãƒ 
-
+		@massage_font = Font.new(40, "‚l‚r ƒSƒVƒbƒN", weight: true)
+    @age_font = Font.new(55, "‚l‚r ƒSƒVƒbƒN", weight: true)
   end
 
 	def select
-		#ã“ã“ã§åˆ†å²ã®é¸æŠã‚’è¡Œã„ã€é¸æŠã—ãŸã‚‰falseã«ã™ã‚‹ã€route_noã«0ï½4ã§å€¤ã‚’å…¥ã‚Œã‚‹
+		#‚±‚±‚Å•ªŠò‚Ì‘I‘ğ‚ğs‚¢A‘I‘ğ‚µ‚½‚çfalse‚É‚·‚éAroute_no‚É0`4‚Å’l‚ğ“ü‚ê‚é
 		@select_route += Input.x * 0.2
 		if @select_route < 0.0
 			@select_route = 0.0
@@ -43,9 +40,9 @@ class Game
 	end
 	
   def play
-    # ãƒãƒƒãƒ—ã‚’æç”»
+    # ƒ}ƒbƒv‚ğ•`‰æ
     @map.draw
-		# ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æç”»
+		# ƒvƒŒƒCƒ„[‚ğ•`‰æ
 		@player.draw
 		
 		if Input.keyPush?(K_LSHIFT)
@@ -55,26 +52,26 @@ class Game
 		if @selecting
 			select
 		else
-			if @dicing	#è»¢ãŒã—ä¸­
+			if @dicing	#“]‚ª‚µ’†
 				@dice.rotate
-				#ãƒ€ã‚¤ã‚¹ã‚’æç”»
+				#ƒ_ƒCƒX‚ğ•`‰æ
 				@dice.draw
 				if Input.keyPush?(K_SPACE)
 					@dicing = false
 				end
 			else
-				#ãƒ€ã‚¤ã‚¹ã‚’æç”»
+				#ƒ_ƒCƒX‚ğ•`‰æ
 				@dice.draw
 				
 				route_no = @select_route.to_i
 				@move_counter = @dice.current_num if @move_counter == 0.0
-				@move_counter, @selecting = @player.move(@move_counter, route_no)	#1ãƒã‚¹é€²ã‚ã‚‹
+				@move_counter, @selecting = @player.move(@move_counter, route_no)	#1ƒ}ƒXi‚ß‚é
 				
 				if @move_counter <= 0.0 || @selecting
 					#@player.check_event
 					@dicing = true
 					@move_counter = 0.0
-					#åŠ é½¢
+					#‰Á—î
 					@player.age += 10
 					@player.img_change(@player.age)
 				end
@@ -82,18 +79,12 @@ class Game
 			
 		end
 		
-    #ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã•ã›ã‚‹
-    Window.drawFont(820,10,"å–å¾—ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ\nãƒ«ãƒ¼ãƒˆ#{@select_route.to_i}", @massage_font, color: [255,255,255])
+    #ƒƒbƒZ[ƒW‚ğ•\¦‚³‚¹‚é
+    Window.drawFont(820,10,"æ“¾ƒAƒCƒeƒ€ƒŠƒXƒg\nƒ‹[ƒg#{@select_route.to_i}", @massage_font, color: [255,255,255])
 
-    #å¹´é½¢ã‚’è¡¨ç¤ºã•ã›ã‚‹
-    Window.drawFont(820, 230, "#{@player.age}æ­³", @age_font, color: [255,255,255])
+    #”N—î‚ğ•\¦‚³‚¹‚é
+    Window.drawFont(820, 230, "#{@player.age}Î", @age_font, color: [255,255,255])
     
-    #ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¡¨ç¤ºã•ã›ã‚‹
-    Image.load('soroban.png') #ãã‚ã°ã‚“ã‚’èª­ã¿è¾¼ã‚€
-	
-	#if 
-	 #Window.loop do
-    #   Window.draw(700, 700, image)
-    # end
+    #ƒAƒCƒeƒ€‚ğ•\¦‚³‚¹‚é
   end
 end

@@ -1,7 +1,7 @@
 # coding: cp932
 
 class Item
-	attr_accessor :power
+	attr_accessor :no, :name, :power, :image
 
 	def initialize(no, name, power, image_name)
 		@no = no
