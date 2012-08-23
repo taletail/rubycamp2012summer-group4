@@ -7,7 +7,7 @@ class Item
 		@no = no
 		@name = name
 		@power = power
-    path = File.join(File.dirname(__FILE__), "..", "..", "images", image_name)
+    path = File.join(File.dirname(__FILE__), "..", "images", image_name)
 		@image = Image.load(path)
 	end
 end
