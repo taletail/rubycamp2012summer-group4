@@ -24,16 +24,17 @@ class Ending
 					end_sound = File.join(File.dirname(__FILE__),"..","sound", "end60.wav")
 				else
 					bg_file = File.join(File.dirname(__FILE__),"..","images", "90sai.png")
-						end_sound = File.join(File.dirname(__FILE__),"..","sound", "end90.wav")
+					end_sound = File.join(File.dirname(__FILE__),"..","sound", "end90.wav")
 			end
 			@ending = Image.load(bg_file)
+			@end_se = Sound.new(end_sound)
+			@sound_played = 0
+
 		else
 			@ending_animations = (1..4).map { |i|
 				Image.load(File.join(File.dirname(__FILE__),"..","images", "oki0#{i}.jpg"))
 			}
 			@counter = 0
-			@end_se = Sound.new(end_sound)
-			@sound_played = 0
 		end
 	end
 
