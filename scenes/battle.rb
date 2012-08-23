@@ -10,18 +10,26 @@ class Battle
     @hp_now_img = Image.new(100, 400, [0, 0, 255])
     @hp_bac_img = Image.new(100, 400, [255, 0, 0])
 #
-    @font = Font.new(30)
+    @font = Font.new(27)
+    @mark = Image.load("./images/mark.png")
+    @orochi = Image.load("./images/orochii01.png")
+    #@player = Image.load("images/ man#{$player.age}.png")
 #
     @hp_max = 100.00
     @hp_now = 100.00
 #
-
-    @mark = Image.load("./images/mark.png")
-    @orochi = Image.load("./images/orochii01.png")
-    #@player = Image.load("images/ man#{}.jpg")
-    
     @command = 0
-    @push_RPG = 0
+    @count = 0
+    @select = 7
+    @draw_x = 200
+    @draw_y = 300
+    @scale_x = -1.00
+    @scale_y = 1.00
+    @spin = 0.00
+
+    $won = 0
+
+    @item = ["シジミ", "算盤", "出雲そば", "玉鋼", "飛び魚", "島根ワイン", "自分"]
     @message1 = ""
     @message2 = ""
     @message3 = ""
@@ -29,77 +37,144 @@ class Battle
   end
 
   def play
+    @count += 1
     #   メニュー、大蛇描写
     Window.draw(200, -5, @orochi)
     Window.drawAlpha(60, 360, @battle_win1, 128)
     Window.drawAlpha(290, 360, @battle_win2, 128)
     Window.drawFont(70, 370, "シジミ", @font)
-    Window.drawFont(70, 405, "算盤", @font)
-    Window.drawFont(70, 440, "出雲そば", @font)
-    Window.drawFont(70, 475, "玉鋼", @font)
-    Window.drawFont(70, 510, "飛び魚", @font)
-    Window.drawFont(70, 545, "島根ワイン", @font)
+    Window.drawFont(70, 400, "算盤", @font)
+    Window.drawFont(70, 430, "出雲そば", @font)
+    Window.drawFont(70, 460, "玉鋼", @font)
+    Window.drawFont(70, 490, "飛び魚", @font)
+    Window.drawFont(70, 520, "島根ワイン", @font)
+    Window.drawFont(70, 550, "素手", @font)
+    
+    #   戦闘アニメーション
+    case @select
+    when 0
+      @item_ef = Image.load("./images/shizimi.png")
+      @draw_x += 6
+      @draw_y -= 2
+      @scale_x += 0.015
+      @scale_y -= 0.015
+      @spin += 1.8
+      Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
+    when 1
+      @item_ef = Image.load("./images/soroban.png")
+      @draw_x += 6
+      @draw_y -= 2
+      @scale_x += 0.015
+      @scale_y -= 0.015
+      @spin += 1.8
+      Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
+    when 2
+      @item_ef = Image.load("./images/soumen.png")
+      @draw_x += 6
+      @draw_y -= 2
+      @scale_x += 0.015
+      @scale_y -= 0.015
+      @spin += 1.8
+      Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
+    when 3
+      @item_ef = Image.load("./images/tatara.png")
+      @draw_x += 6
+      @draw_y = 300 + (1.6 * @count * @count) - (80 * @count)
+      @draw_y -= 2 * @count
+      @scale_x += 0.015
+      @scale_y -= 0.015
+      @spin += 1.8
+      Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
+    when 4
+      @item_ef = Image.load("./images/tobiuo.png")
+      @draw_x += 6
+      @draw_y -= 2
+      @scale_x += 0.015
+      @scale_y -= 0.015
+      Window.drawScale(@draw_x, @draw_y, @item_ef, @scale_x, @scale_y)
+    when 5
+      @item_ef = Image.load("./images/wine.png")
+      @draw_x += 6
+      @draw_y -= 2
+      @scale_x += 0.015
+      @scale_y -= 0.015
+      @spin += 1.8
+      Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
+    when 6
+      #  年齢変更
+      @item_ef = Image.load("./images/men0.png")
+      @draw_x += 6
+      @draw_y -= 2
+      @scale_x += 0.015
+      @scale_y -= 0.015
+      @spin += 1.8
+      Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
+    end
+    if @draw_x == 500
+      @draw_x = 200
+      @draw_y = 300
+      @scale_x = -1.00
+      @scale_y = 1.00
+      @angle = 0.00
+      @select = 7
+    end
+
+
     Window.drawFont(300, 370, "#{@message1}", @font)
-    Window.drawFont(300, 405, "#{@message2}", @font)
-    Window.drawFont(300, 440, "#{@message3}", @font)
-    Window.drawFont(300, 475, "#{@message4}", @font)
+    Window.drawFont(300, 400, "#{@message2}", @font)
+#    if $orochi_hp <= 0
+#      $won = 1 
+#    elsif $player.hp > 0
+      Window.drawFont(300, 430, "#{@message3}", @font)
+      Window.drawFont(300, 460, "#{@message4}", @font)
+#    else
+#      $won = 2 if $player_damage
+#    end
+
 #   HP描写
     Window.drawFont(885, 50, "HP", @font) #後でplayer.hpに変更
     Window.drawAlpha(850, 90, @hp_max_img, 128)
     per = (@hp_now / @hp_max) * 100
     per1 = 90 + 4 * (100 - per)
     per2 = 4 * per
-    aka = 255 * per / 100
+    aka = 50 + (205 * per / 100)
     Window.drawMorph(850, per1, 950, per1, 950, 490, 850, 490, @hp_bac_img, {:alpha => aka})
-    @hp_now = 70
+    @hp_now = 50
 #
 #   矢印の移動、描写
     @command += 1 if Input.keyPush?(K_DOWN)
     @command -= 1 if Input.keyPush?(K_UP)
-    @command -= 6 if @command > 5
-    @command += 6 if @command < 0
-    mark_point = (@command * 35) + 370
+    @command -= 7 if @command > 6
+    @command += 7 if @command < 0
+    mark_point = (@command * 30) + 370
     Window.draw(30, mark_point, @mark)
 
 #   アイテム選択時の変数変更
 
     if Input.keyPush?(K_RETURN)
-      @push_RPG = 1
-      case @command
-      when 0
-        item = "シジミ"
-      when 1
-        item = "算盤"
-      when 2
-        item = "出雲そば"
-      when 3
-        item = "玉鋼"
-      when 4
-        item = "飛び魚"
-      else
-        item = "島根ワイン"
-      end
+      @select = @command
+      @count = 0
+
 #   変更された変数をもとに戦闘
 =begin
-      if $player.items[@command] = 0
+      if $player.items[@select] = 0
         Window.drawFont(300, 370, "所持数ゼロ", font)
       else
 =end
 #      cal damege
 #      cal damage
-      if @push_RPG == 1
         orochi_damage = 50
         player_damage = 50
-        @message1 = "#{item}を投げつけた"
+        @message1 = "#{@item[@select]}を投げつけた"
         @message2 = "八岐大蛇に#{orochi_damage}のダメージ"
         @message3 = "八岐大蛇の攻撃"
         @message4 = "プレイヤーに#{player_damage}のダメージ"
 
+
 #        $orochi_hp -= orochi_damage
 
 #        $player.hp -= player_damage
-      end
+#      end
     end
-
   end
 end
