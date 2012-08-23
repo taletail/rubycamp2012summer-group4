@@ -15,7 +15,7 @@ class Title
     end
 
     if @pushed_space
-      @alpha -= 4
+      @alpha -= 6
       if @alpha <= 0
         @alpha = 0
       end
