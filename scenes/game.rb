@@ -22,7 +22,7 @@ class Game
     @select_route = 0.0
     
 		@massage_font = Font.new(22, "ＭＳ ゴシック", weight: true)
-		@massage_font_small = Font.new(18, "ＭＳ ゴシック", weight: true)
+		@massage_font_large = Font.new(30)
     @age_font = Font.new(55, "ＭＳ ゴシック", weight: true)
 		@num_items_font = Font.new(20, "ＭＳ ゴシック", weight: true)
   end
@@ -101,7 +101,8 @@ class Game
 		end
 		
     #メッセージを表示させる
-    Window.drawFont(818,10,"アイテムリスト", @massage_font, color: [255,255,255])
+    Window.drawFont(818, 315, "アイテムリスト", @massage_font, color: [255,255,255])
+    Window.drawFont(170, 20, "SHIFTキーを押すと八岐大蛇と戦闘", @massage_font_large)
 
     #年齢を表示させる
     Window.drawFont(820, 230, "#{@player.age}歳", @age_font, color: [255,255,255])
