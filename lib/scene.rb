@@ -20,6 +20,9 @@ class Scene
   # シーンオブジェクトのカレントを切り替える
   def self.set_scene(scene_name)
     @@current_scene_name = scene_name.to_sym
+		if @@scenes[@@current_scene_name].respond_to?(:switched_this_scene)
+			@@scenes[@@current_scene_name].switched_this_scene
+		end
   end
 
   # 現在設定されているシーンオブジェクトのplayメソッドを実行
