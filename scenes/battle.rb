@@ -35,7 +35,7 @@ class Battle
     @scale_x = -1.00
     @scale_y = 1.00
     @spin = 0.00
-    @bgm = Sound.new("./sound/boss.wav")
+    @bgm_battle = Sound.new("./sound/boss.wav")
     @bgm_switch = 0
 
     $won = 0
@@ -44,7 +44,7 @@ class Battle
 
   def play
     if @bgm_switch == 0
-      @bgm.play
+      @bgm_battle.play
       @bgm_switch = 1
     end
     @count += 1
@@ -172,6 +172,9 @@ class Battle
 #   •ÏX‚³‚ê‚½•Ï”‚ğ‚à‚Æ‚Éí“¬
       if $player.items[@select] == 0
         @message1 = "Š”ƒ[ƒ"
+        @message2 = ""
+        @message3 = ""
+        @message4 = ""
         @select = 7
       else
         if @select == 6

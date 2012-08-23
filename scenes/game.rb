@@ -24,7 +24,7 @@ class Game
 		@message_item = ""
 		
 		@massage_font = Font.new(22, "ＭＳ ゴシック", weight: true)
-		@massage_font_large = Font.new(30)
+		@message_font_large = Font.new(30)
     @age_font = Font.new(55, "ＭＳ ゴシック", weight: true)
 		@num_items_font = Font.new(20, "ＭＳ ゴシック", weight: true)
   end
@@ -97,7 +97,6 @@ class Game
 					when 81..109
 						@player.hp = 40.00
 					end
-					
 					@player.img_change(@player.age)
 				end
 				if @player.age >= 110
@@ -109,11 +108,11 @@ class Game
 		
     #メッセージを表示させる
     Window.drawFont(818, 315, "アイテムリスト", @massage_font, color: [255,255,255])
-    Window.drawFont(170, 20, "SHIFTキーを押すと八岐大蛇と戦闘", @massage_font_large)
+    Window.drawFont(170, 20, "SHIFTキーを押すと八岐大蛇と戦闘", @message_font_large)
 
     #年齢を表示させる
     Window.drawFont(870, 240, "#{@player.age}歳", @age_font, color: [255,255,255])
-
+    Window.drawFont(840, 80, "HP:#{@player.hp}", @message_font_large)
 		#年の隣にアイコンを表示させる
     
 	  	Window.draw(820,240, @player.img)
