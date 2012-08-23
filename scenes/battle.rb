@@ -119,7 +119,23 @@ class Battle
       @spin += 1.8
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 6
-      @item_ef = Image.load("./images/men#{$player.age}.png")
+      case $player.age
+      when 0
+        player_image = men0.png
+      when 10
+        player_image = men10.png
+      when 20
+        player_image = men20.png
+      when 40
+        player_image = men40.png
+      when 60
+        player_image = men60.png
+      when 80
+        player_image = men80.png
+      end
+
+      img_file = File.join(File.dirname(__FILE__), "..", "..", "images", player_image)
+      @item_ef = Image.load("img_file")
       sound = Sound.new("./sound./sude.wav")
       @draw_x += 6
       @draw_y -= 2
@@ -142,7 +158,7 @@ class Battle
     Window.drawFont(300, 400, "#{@message2}", @font)
     if @orochi_hp <= 0
       $won = 1 
-      Scene.set_scene(:ending)
+      Scene.set_scene(:goend)
     elsif $player.hp > 0
       Window.drawFont(300, 430, "#{@message3}", @font)
       Window.drawFont(300, 460, "#{@message4}", @font)
@@ -151,7 +167,7 @@ class Battle
       Scene.set_scene(:ending)
     end
 #   HPï`é 
-    Window.drawFont(885, 50, "HP", @font) #å„Ç≈player.hpÇ…ïœçX
+    Window.drawFont(885, 50, "HP", @font)
     Window.drawAlpha(850, 90, @hp_max_img, 128)
     per = $player.hp / @hp_max * 100
     per1 = 90 + 4 * (100 - per)
