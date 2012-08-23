@@ -119,7 +119,6 @@ class Battle
       @select = 7
     end
 
-
     Window.drawFont(300, 370, "#{@message1}", @font)
     Window.drawFont(300, 400, "#{@message2}", @font)
 #    if $orochi_hp <= 0
@@ -139,6 +138,7 @@ class Battle
     per2 = 4 * per
     aka = 50 + (205 * per / 100)
     Window.drawMorph(850, per1, 950, per1, 950, 490, 850, 490, @hp_bac_img, {:alpha => aka})
+#   $player.hp に変更
     @hp_now = 50
 #
 #   矢印の移動、描写
@@ -165,16 +165,17 @@ class Battle
 #      cal damage
         orochi_damage = 50
         player_damage = 50
-        @message1 = "#{@item[@select]}を投げつけた"
+        @message1 = "#{@items[@select]}を投げつけた"
         @message2 = "八岐大蛇に#{orochi_damage}のダメージ"
         @message3 = "八岐大蛇の攻撃"
         @message4 = "プレイヤーに#{player_damage}のダメージ"
 
 
-#        $orochi_hp -= orochi_damage
+        $orochi_hp -= orochi_damage
 
-#        $player.hp -= player_damage
+        $player.hp -= player_damage
 #      end
     end
+
   end
 end
