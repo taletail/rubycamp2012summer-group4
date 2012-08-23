@@ -23,10 +23,9 @@ class Battle
   
   def switched_this_scene
     @orochi_hp = 100
+    $player.hp = rand(500.00) + 1.00 if $player.age == 0
     @hp_max = $player.hp
-    @hp_now = $player.hp
 #    @player = Image.load("images/ man#{$player.age}.png")
-
 
     @item_power = [10, 30, 20, 50, 40, 10]
     @command = 0
