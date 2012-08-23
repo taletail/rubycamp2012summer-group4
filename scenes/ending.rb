@@ -50,5 +50,4 @@ class Ending
 			animation
 		end
 	end
-  end
 end
