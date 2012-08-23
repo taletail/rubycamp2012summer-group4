@@ -50,7 +50,7 @@ class Game
 		end
 		
 		if @selecting
-			self.select
+			select
 		else
 			if @dicing	#転がし中
 				@dice.rotate
@@ -68,10 +68,7 @@ class Game
 				@move_counter, @selecting = @player.move(@move_counter, route_no)	#1マス進める
 				
 				if @move_counter <= 0.0 || @selecting
-					if @move_counter <= 0.0
-						@player.check_event
-					end
-					
+					@player.check_event
 					@dicing = true
 					@move_counter = 0.0
 					#加齢
@@ -89,5 +86,11 @@ class Game
     Window.drawFont(820, 230, "#{@player.age}歳", @age_font, color: [255,255,255])
     
     #アイテムを表示させる
+		6.times do |i|
+			if @player.items[i] > 0
+				Window.draw(820 + (i < 3 ? 0 : 1) * 80, 320 + (i % 3) * 80, ITEMS[i].image)
+			end
+		end
+
   end
 end
