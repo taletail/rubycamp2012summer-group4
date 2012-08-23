@@ -78,7 +78,7 @@ class Game
 		end
 		
     #メッセージを表示させる
-    Window.drawFont(820,10,"しじみを手に入れた\nルート#{@select_route.to_i}", @massage_font, color: [255,255,255])
+    Window.drawFont(820,10,"▼しじみを手に入れた\nルート#{@select_route.to_i}", @massage_font, color: [255,255,255])
 
     #年齢を表示させる
     Window.drawFont(820, 230, "#{@player.age}歳", @age_font, color: [255,255,255])

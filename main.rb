@@ -14,8 +14,7 @@ Scene.load_scenes
 $orochi_hp = 100
 $player = Player.new(nil)
 
-Scene.set_scene(:battle)
-#Scene.set_scene(:title)
+Scene.set_scene(:title)
 
 Input.setRepeat(10,2)
 
