@@ -25,7 +25,6 @@ class Battle
     @orochi_hp = 100
     $player.hp = rand(500.00) + 1.00 if $player.age == 0
     @hp_max = $player.hp
-#    @player = Image.load("images/ man#{$player.age}.png")
 
     @item_power = [10, 30, 20, 50, 40, 10]
     @command = 0
@@ -36,12 +35,18 @@ class Battle
     @scale_x = -1.00
     @scale_y = 1.00
     @spin = 0.00
+    @bgm = Sound.new("./sound/boss.wav")
+    @bgm_switch = 0
 
     $won = 0
 
   end
 
   def play
+    if @bgm_switch == 0
+      @bgm.play
+      @bgm_switch = 1
+    end
     @count += 1
     #   メニュー、大蛇描写
     Window.draw(200, -5, @orochi)
@@ -115,6 +120,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 6
       @item_ef = Image.load("./images/men#{$player.age}.png")
+      sound = Sound.new("./sound./sude.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -123,7 +129,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     end
     if @draw_x == 500
-      sound.play if @select != 3 && @select != 6
+      sound.play if @select != 3
       @draw_x = 200
       @draw_y = 300
       @scale_x = -1.00
@@ -131,7 +137,7 @@ class Battle
       @angle = 0.00
       @select = 7
     end
-
+#   ダメージ表示
     Window.drawFont(300, 370, "#{@message1}", @font)
     Window.drawFont(300, 400, "#{@message2}", @font)
     if @orochi_hp <= 0
