@@ -15,7 +15,6 @@ class Event
   end
 	
 	def draw(x, y)
-		# item no hyouji
 		Window.draw(x, y, @item.image)
 	end
 end

@@ -9,8 +9,11 @@ class Player
   attr_accessor :hp
   attr_accessor :pos
 	
+	DIVISION = 4.0
+	START_X = 391
+	START_Y = 541
 	
-  def initialize(map, x = 391, y = 541)
+  def initialize(map, x = START_X, y = START_Y)
 		@map = map
 		@age = 0
 		@items = Array.new(ITEMS.length) { 0 }
@@ -24,15 +27,31 @@ class Player
     @step = 0.0625
     @hp = 100
   end
-
+	
+	def animation
+		@x_next, @y_next = @map.get_point_pos(@pos.to_i , @route_no)
+	
+		dx = @x_next - @x
+		dy = @y_next - @y
+	
+		w = @pos / @step % 1.0 
+		if w % DIVISION == 0
+			@x += dx / DIVISION
+			@y += dy / DIVISION	
+		end
+	end
+	
   def move(counter, route_no)
 		@route_no = route_no 
-    @x, @y = @map.get_point_pos(@pos.to_i, @route_no)
+    
+		self.animation
+		#@x, @y = @map.get_point_pos(@pos.to_i, @route_no)
 		@pos += @step
 		
+		#端まで来たら初期化する
 		if @pos.to_i >= @map.points[@route_no].size
-			@x = 391
-			@y = 541
+			@x = START_X
+			@y = START_Y
 			@pos = 0.0
       return counter - @step.abs, true
     end

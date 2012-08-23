@@ -25,33 +25,33 @@ class Map
 		route0 << Point.new(167   , 268	  , 0 , event: Event.new("“‡ªƒƒCƒ“"))
 		
 		route1 << Point.new(335   , 478	  , 1 )
-		route1 << Point.new(318   , 390	  , 1 )
+		route1 << Point.new(318   , 390	  , 1 , event: Event.new("ŽZ”Õ"))
 		route1 << Point.new(329   , 288	  , 1 )
 		route1 << Point.new(370   , 169	  , 1 )
-		route1 << Point.new(412   , 95	  , 1 )
+		route1 << Point.new(412   , 95	  , 1 , event: Event.new("o‰_‚»‚Î"))
 		
 		route2 << Point.new(392   , 461	  , 2 )
-		route2 << Point.new(409   , 392	  , 2 )
+		route2 << Point.new(409   , 392	  , 2 , event: Event.new("ŽZ”Õ"))
 		route2 << Point.new(396   , 294	  , 2 )
 		route2 << Point.new(348   , 229	  , 2 )
-		route2 << Point.new(282   , 150	  , 2 )
+		route2 << Point.new(282   , 150	  , 2 , event: Event.new("ŽZ”Õ"))
 		route2 << Point.new(193   , 106	  , 2 )
-		route2 << Point.new(99    , 91	  , 2 )
+		route2 << Point.new(99    , 91	  , 2 , event: Event.new("‹Ê|"))
 		
 		route3 << Point.new(439   , 477	  , 3 )
 		route3 << Point.new(470   , 385	  , 3 )
-		route3 << Point.new(505   , 308	  , 3 )
-		route3 << Point.new(541   , 234	  , 3 )
+		route3 << Point.new(505   , 308	  , 3 , event: Event.new("“‡ªƒƒCƒ“"))
+		route3 << Point.new(541   , 234	  , 3 , event: Event.new("“‡ªƒƒCƒ“"))
 		route3 << Point.new(581   , 164	  , 3 )
-		route3 << Point.new(615   , 86	  , 3 )
+		route3 << Point.new(615   , 86	  , 3 , event: Event.new("”ò‚Ñ‹›"))
 		
 		route4 << Point.new(457   , 546	  , 4 )
 		route4 << Point.new(530   , 547	  , 4 )
 		route4 << Point.new(602   , 533	  , 4 )
-		route4 << Point.new(668   , 491	  , 4 )
+		route4 << Point.new(668   , 491	  , 4 , event: Event.new("”ò‚Ñ‹›"))
 		route4 << Point.new(723   , 436	  , 4 )
 		route4 << Point.new(724   , 365	  , 4 )
-		route4 << Point.new(656   , 341	  , 4 )
+		route4 << Point.new(656   , 341	  , 4 , event: Event.new("‹Ê|"))
 		
 		points << route0
 		points << route1

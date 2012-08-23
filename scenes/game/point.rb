@@ -34,6 +34,11 @@ class Point
   def event(player)
     return false unless @event
     player.items[@event.item_no] += 1
+		
+		player.items.each do |i|
+			puts i
+		end
+		print "\n"
   end
 
   def draw
