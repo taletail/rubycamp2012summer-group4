@@ -54,7 +54,7 @@ class Ending
 		if @won
       Window.draw(0,0,@ending)
 			if @sound_played == 0
-				Sound.play(@end_se)
+				@end_se.play
 				@sound_played = 1
 			end
     else
