@@ -32,7 +32,7 @@ class Ending
 				Image.load(File.join(File.dirname(__FILE__),"..","images", "oki0#{i}.jpg"))
 			}
 			@counter = 0
-			@end_se  =Sound.load(end_sound)
+			@end_se = Sound.new(end_sound)
 			@sound_played = 0
 		end
 	end
