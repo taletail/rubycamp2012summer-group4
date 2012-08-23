@@ -5,16 +5,14 @@ class Battle
 
     @battle_win1 = Image.new(200, 225, [0, 0, 255])
     @battle_win2 = Image.new(450, 225, [0, 0, 255])
-#
+
     @hp_max_img = Image.new(100, 400, [255,255,255,])
     @hp_now_img = Image.new(100, 400, [0, 0, 255])
     @hp_bac_img = Image.new(100, 400, [255, 0, 0])
-#
+
     @font = Font.new(27)
     @mark = Image.load("./images/mark.png")
     @orochi = Image.load("./images/orochii01.png")
-    #@player = Image.load("images/ man#{$player.age}.png")
-#
 
     @item = ["シジミ", "算盤", "出雲そば", "日本刀", "飛び魚", "島根ワイン", "自分"]
     @message1 = "八岐大蛇があらわれた"
@@ -27,7 +25,10 @@ class Battle
     @orochi_hp = 100
     @hp_max = $player.hp
     @hp_now = $player.hp
-#
+#    @player = Image.load("images/ man#{$player.age}.png")
+
+
+    @item_power = [10, 30, 20, 50, 40, 10]
     @command = 0
     @count = 0
     @select = 7
@@ -38,7 +39,7 @@ class Battle
     @spin = 0.00
 
     $won = 0
-  
+
   end
 
   def play
@@ -54,7 +55,6 @@ class Battle
     Window.drawFont(70, 490, "飛び魚", @font)
     Window.drawFont(70, 520, "島根ワイン", @font)
     Window.drawFont(70, 550, "素手", @font)
-    
     #   戦闘アニメーション
     case @select
     when 0
@@ -115,8 +115,7 @@ class Battle
       @spin += 1.8
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 6
-      #  年齢変更
-      @item_ef = Image.load("./images/men0.png")
+      @item_ef = Image.load("./images/men#{$player.age}.png")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -125,7 +124,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     end
     if @draw_x == 500
-      sound.play if @select != 3
+      sound.play if @select != 3 && @select != 6
       @draw_x = 200
       @draw_y = 300
       @scale_x = -1.00
@@ -146,18 +145,14 @@ class Battle
       $won = 2 if $player.hp <= 0
       Scene.set_scene(:ending)
     end
-
 #   HP描写
     Window.drawFont(885, 50, "HP", @font) #後でplayer.hpに変更
     Window.drawAlpha(850, 90, @hp_max_img, 128)
-    per = (@hp_now / @hp_max) * 100
+    per = $player.hp / @hp_max * 100
     per1 = 90 + 4 * (100 - per)
     per2 = 4 * per
     aka = 50 + (205 * per / 100)
     Window.drawMorph(850, per1, 950, per1, 950, 490, 850, 490, @hp_bac_img, {:alpha => aka})
-#   $player.hp に変更
-    @hp_now = $player.hp
-#
 #   矢印の移動、描写
     @command += 1 if Input.keyPush?(K_DOWN)
     @command -= 1 if Input.keyPush?(K_UP)
@@ -165,38 +160,30 @@ class Battle
     @command += 7 if @command < 0
     mark_point = (@command * 30) + 370
     Window.draw(30, mark_point, @mark)
-
 #   アイテム選択時の変数変更
-
     if Input.keyPush?(K_RETURN)
       @select = @command
       @count = 0
-
 #   変更された変数をもとに戦闘
-=begin
-      if $player.items[@select] = 0
-        Window.drawFont(300, 370, "所持数ゼロ", font)
+      if $player.items[@select] == 0
+        @message1 = "所持数ゼロ"
+        @select = 7
       else
-      if @select == 6
-        orochi_damage = rand(21)
-      else
-        orochi_damage = itemPowor + rand(7) - 3
+        if @select == 6
+          orochi_damage = rand(21)
+        else
+          orochi_damage = @item_power[@select] + rand(7) - 3
+         $player.items[@select] -= 1
+        end
+          player_damage = 30
+          @message1 = "#{@item[@select]}を投げつけた"
+          @message2 = "八岐大蛇に#{orochi_damage}のダメージ"
+          @message3 = "八岐大蛇の攻撃"
+          @message4 = "プレイヤーに#{player_damage}のダメージ"
+
+          @orochi_hp -= orochi_damage
+          $player.hp -= player_damage
+        end
       end
-#      cal damage
-=end
-        orochi_damage = 50
-        player_damage = 30
-        @message1 = "#{@item[@select]}を投げつけた"
-        @message2 = "八岐大蛇に#{orochi_damage}のダメージ"
-        @message3 = "八岐大蛇の攻撃"
-        @message4 = "プレイヤーに#{player_damage}のダメージ"
-#       $player.item[@select] -= 1
-
-        @orochi_hp -= orochi_damage
-
-        $player.hp -= player_damage
-#      end
     end
-
-  end
 end

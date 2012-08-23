@@ -25,7 +25,7 @@ class Player
     img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "men0.png")
     @img = Image.load(img_file)
     @step = 0.0625
-    @hp = 100
+    @hp = 100.00
   end
 	
 	def animation

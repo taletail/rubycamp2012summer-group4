@@ -50,6 +50,7 @@ class Game
 		@player.draw
 		
 		if Input.keyPush?(K_LSHIFT)
+            $player = @player
 			Scene.set_scene(:battle)
 		end
 		
