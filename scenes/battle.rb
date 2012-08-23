@@ -1,5 +1,6 @@
 # coding: cp932
 
+#   $player_hp を $player.hp に
 class Battle
   def initialize
 
@@ -15,6 +16,7 @@ class Battle
     @orochi = Image.load("./images/orochii01.png")
     #@player = Image.load("images/ man#{$player.age}.png")
 #
+    @orochi_hp = 100
     @hp_max = 100.00
     @hp_now = 100.00
 #
@@ -28,8 +30,9 @@ class Battle
     @spin = 0.00
 
     $won = 0
+    $player_hp = 100
 
-    @item = ["シジミ", "算盤", "出雲そば", "玉鋼", "飛び魚", "島根ワイン", "自分"]
+    @item = ["シジミ", "算盤", "出雲そば", "日本刀", "飛び魚", "島根ワイン", "自分"]
     @message1 = "八岐大蛇があらわれた"
     @message2 = ""
     @message3 = ""
@@ -131,14 +134,14 @@ class Battle
 
     Window.drawFont(300, 370, "#{@message1}", @font)
     Window.drawFont(300, 400, "#{@message2}", @font)
-#    if $orochi_hp <= 0
-#      $won = 1 
-#    elsif $player.hp > 0
+    if @orochi_hp <= 0
+      $won = 1 
+    elsif $player_hp > 0
       Window.drawFont(300, 430, "#{@message3}", @font)
       Window.drawFont(300, 460, "#{@message4}", @font)
-#    else
-#      $won = 2 if $player_damage
-#    end
+    else
+      $won = 2 if $player_hp <= 0
+    end
 
 #   HP描写
     Window.drawFont(885, 50, "HP", @font) #後でplayer.hpに変更
@@ -170,20 +173,24 @@ class Battle
       if $player.items[@select] = 0
         Window.drawFont(300, 370, "所持数ゼロ", font)
       else
-=end
-#      cal damege
+      if @select == 6
+        orochi_damage = rand(21)
+      else
+        orochi_damage = itemPowor + rand(7) - 3
+      end
 #      cal damage
+=end
         orochi_damage = 50
-        player_damage = 50
+        player_damage = 30
         @message1 = "#{@item[@select]}を投げつけた"
         @message2 = "八岐大蛇に#{orochi_damage}のダメージ"
         @message3 = "八岐大蛇の攻撃"
         @message4 = "プレイヤーに#{player_damage}のダメージ"
+#       $player.item[@select] -= 1
 
+        @orochi_hp -= orochi_damage
 
-#        $orochi_hp -= orochi_damage
-
-#        $player.hp -= player_damage
+        $player_hp -= player_damage
 #      end
     end
 

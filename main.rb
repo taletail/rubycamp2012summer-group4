@@ -12,9 +12,8 @@ Window.height  = 600
 
 Scene.load_scenes
 
-
-$orochi_hp = 100 
 $player = Player.new(nil)
+$counter = 0
 
 Scene.set_scene(:title)
 

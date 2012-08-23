@@ -1,13 +1,13 @@
 # coding: utf-8
 
 class Ending
-  def initialize
-  end
+    def initialize
+    end
 
-  # このシーンに切り替わった直後に呼ばれる処理
-  def switched_this_scene
+    # このシーンに切り替わった直後に呼ばれる処理
+    def switched_this_scene
 		@age = $player.age
-		@won = ($orochi_hp <= 0)#@wonの判定は1で勝ち0で負けに変えておく
+		@won = ($won == 1)#@wonの判定は1で勝ち0で負けに変えておく
 		if @won
 			case @age
 				when 0
@@ -40,14 +40,15 @@ class Ending
 	end
   
 	def play
-  	if Input.keyPush?(K_RETURN)
+        if Input.keyPush?(K_RETURN)
 			exit
-   	end
+        end
 		if @won
-  		Window.draw(0,0,@ending)
-  	else
+            Window.draw(0,0,@ending)
+        else
 			@counter += 1
 			animation
 		end
+	end
   end
 end
