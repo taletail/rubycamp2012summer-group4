@@ -27,33 +27,33 @@ class Map
 		route0 << Point.new(89    , 323	  , 0 , event: Event.new("”ò‚Ñ‹›"))
 		route0 << Point.new(167   , 268	  , 0 , event: Event.new("“‡ªƒƒCƒ“"))
 		
-		route1 << Point.new(335   , 478	  , 1 , event: Event.new("ŽZ”Õ"))
-		route1 << Point.new(318   , 390	  , 1 , event: Event.new("ŽZ”Õ"))
-		route1 << Point.new(329   , 288	  , 1 , event: Event.new("ŽZ”Õ"))
-		route1 << Point.new(370   , 169	  , 1 , event: Event.new("ŽZ”Õ"))
-		route1 << Point.new(412   , 95	  , 1 , event: Event.new("ŽZ”Õ"))
+		route1 << Point.new(335   , 478	  , 1 )
+		route1 << Point.new(318   , 390	  , 1 )
+		route1 << Point.new(329   , 288	  , 1 )
+		route1 << Point.new(370   , 169	  , 1 )
+		route1 << Point.new(412   , 95	  , 1 )
 		
-		route2 << Point.new(392   , 461	  , 2 , event: Event.new("“‡ªƒƒCƒ“"))
-		route2 << Point.new(409   , 392	  , 2 , event: Event.new("”ò‚Ñ‹›"))
-		route2 << Point.new(396   , 294	  , 2 , event: Event.new("ƒVƒWƒ~"))
-		route2 << Point.new(348   , 229	  , 2 , event: Event.new("”ò‚Ñ‹›"))
-		route2 << Point.new(282   , 150	  , 2 , event: Event.new("“‡ªƒƒCƒ“"))
-		route2 << Point.new(193   , 106	  , 2 , event: Event.new("”ò‚Ñ‹›"))
-		route2 << Point.new(99    , 91	  , 2 , event: Event.new("ƒVƒWƒ~"))
+		route2 << Point.new(392   , 461	  , 2 )
+		route2 << Point.new(409   , 392	  , 2 )
+		route2 << Point.new(396   , 294	  , 2 )
+		route2 << Point.new(348   , 229	  , 2 )
+		route2 << Point.new(282   , 150	  , 2 )
+		route2 << Point.new(193   , 106	  , 2 )
+		route2 << Point.new(99    , 91	  , 2 )
 		
-		route3 << Point.new(439   , 477	  , 3 , event: Event.new("o‰_‚»‚Î"))
-		route3 << Point.new(470   , 385	  , 3 , event: Event.new("‹Ê|"))
+		route3 << Point.new(439   , 477	  , 3 )
+		route3 << Point.new(470   , 385	  , 3 )
 		route3 << Point.new(505   , 308	  , 3 )
-		route3 << Point.new(541   , 234	  , 3 , event: Event.new("o‰_‚»‚Î"))
-		route3 << Point.new(581   , 164	  , 3 , event: Event.new("‹Ê|"))
+		route3 << Point.new(541   , 234	  , 3 )
+		route3 << Point.new(581   , 164	  , 3 )
 		route3 << Point.new(615   , 86	  , 3 )
 		
 		route4 << Point.new(457   , 546	  , 4 )
 		route4 << Point.new(530   , 547	  , 4 )
-		route4 << Point.new(602   , 533	  , 4 , event: Event.new("‹Ê|"))
-		route4 << Point.new(668   , 491	  , 4 , event: Event.new("‹Ê|"))
+		route4 << Point.new(602   , 533	  , 4 )
+		route4 << Point.new(668   , 491	  , 4 )
 		route4 << Point.new(723   , 436	  , 4 )
-		route4 << Point.new(724   , 365	  , 4 , event: Event.new("‹Ê|"))
+		route4 << Point.new(724   , 365	  , 4 )
 		route4 << Point.new(656   , 341	  , 4 )
 		
 		points << route0
@@ -78,6 +78,10 @@ class Map
 			y2 = points[@current_route][i + 1].y + 20
 
 			@map_with_line_img.line(x1 ,y1 ,x2 ,y2 ,[255,255,255])
+			@map_with_line_img.line(x1+1 ,y1+1 ,x2+2 ,y2+2 ,[255,255,255])
+			@map_with_line_img.line(x1-1 ,y1-1 ,x2-1 ,y2-1 ,[255,255,255])
+			@map_with_line_img.line(x1+1 ,y1+1 ,x2+1 ,y2+1 ,[255,255,255])
+
 		end
 
     Window.draw(0, 0, @map_with_line_img)
