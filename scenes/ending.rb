@@ -34,11 +34,18 @@ class Ending
 			@ending_animations = (1..4).map { |i|
 				Image.load(File.join(File.dirname(__FILE__),"..","images", "oki0#{i}.jpg"))
 			}
+            @sound_played = 2
 			@counter = 0
 		end
 	end
 
 	def animation
+        if @sound_played == 2
+            end_sound = File.join(File.dirname(__FILE__),"..","sound", "lost.wav")
+            @bgm = Sound.new(end_sound)
+            @bgm.play
+            @sound_played = 3
+        end
 		if @counter < 399
 			Window.draw(99,0,@ending_animations[@counter/100])
 		else
