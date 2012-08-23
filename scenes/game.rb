@@ -106,6 +106,11 @@ class Game
 
     #年齢を表示させる
     Window.drawFont(820, 230, "#{@player.age}歳", @age_font, color: [255,255,255])
+
+		#年の隣にアイコンを表示させる
+    
+	  	Window.draw(950,250, @player.img)
+
     
     #アイテムを表示させる
 		6.times do |i|
