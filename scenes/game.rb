@@ -50,12 +50,12 @@ class Game
 		@player.draw
 		
 		if Input.keyPush?(K_LSHIFT)
-            $player = @player
+      $player = @player
 			Scene.set_scene(:battle)
 		end
 		
 		if @selecting
-			select
+			self.select
 		else
 			if @dicing	#“]‚ª‚µ’†
 				@dice.rotate
@@ -78,7 +78,23 @@ class Game
 					@move_counter = 0.0
 					#‰Á—î
 					@player.age += 10
+					
+					case @player.age
+					when 1..30
+						@player.hp = 150
+					when 31..60
+						@player.hp = 100
+					when 61..80
+						@player.hp = 70
+					when 81..109
+						@player.hp = 40
+					end
+					
 					@player.img_change(@player.age)
+				end
+				if @player.age >= 110
+					$player = @player
+					Scene.set_scene(:ending)
 				end
 			end
 			
