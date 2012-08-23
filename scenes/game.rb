@@ -23,6 +23,7 @@ class Game
     
 		@massage_font = Font.new(40, "‚l‚r ƒSƒVƒbƒN", weight: true)
     @age_font = Font.new(55, "‚l‚r ƒSƒVƒbƒN", weight: true)
+		@num_items_font = Font.new(15, "‚l‚r ƒSƒVƒbƒN", weight: true)
   end
 
 	def select
@@ -88,7 +89,10 @@ class Game
     #ƒAƒCƒeƒ€‚ð•\Ž¦‚³‚¹‚é
 		6.times do |i|
 			if @player.items[i] > 0
-				Window.draw(820 + (i < 3 ? 0 : 1) * 80, 320 + (i % 3) * 80, ITEMS[i].image)
+				x = 840 + (i < 3 ? 0 : 1) * 80
+				y = 340 + (i % 3) * 80
+				Window.draw(x, y, ITEMS[i].image)
+				Window.drawFont(x + 30, y + 30, @player.items[i].to_s, @num_items_font)
 			end
 		end
 
