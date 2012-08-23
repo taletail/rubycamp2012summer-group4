@@ -19,7 +19,7 @@ class Player
 		@route_no = nil
     img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "men0.png")
     @img = Image.load(img_file)
-    @step = 0.05
+    @step = 0.0625
     @hp = 100
   end
 
@@ -30,14 +30,13 @@ class Player
     @x, @y = @map.get_point_pos(@pos.to_i, @route_no)
 		@pos += @step
 		
-    if @pos.to_i == @map.points[@route_no].size-1
+		if @pos.to_i >= @map.points[@route_no].size
 			@x = 391
 			@y = 541
 			@pos = 0.0
-      #Scene.set_scene(:ending)
-			return counter - @step.abs, false
+      return counter - @step.abs, true
     end
-    return counter - @step.abs, true
+    return counter - @step.abs, false
   end
 
   def check_event
@@ -46,18 +45,18 @@ class Player
 	
 	def img_change(age)
 		case age
-			when 10
-				img_name = "men10.png"
-			when 20
-				img_name = "men20.png"
-			when 40
-				img_name = "men40.png"
-			when 60
-				img_name = "men60.png"
-			when 80
-				img_name = "men80.png"
-			else
-				return
+		when 10
+			img_name = "men10.png"
+		when 20
+			img_name = "men20.png"
+		when 40
+			img_name = "men40.png"
+		when 60
+			img_name = "men60.png"
+		when 80
+			img_name = "men80.png"
+		else
+			return
 		end
 		img_file = File.join(File.dirname(__FILE__), "..", "..", "images", img_name)
     @img = Image.load(img_file)
