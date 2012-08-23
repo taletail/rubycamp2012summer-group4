@@ -77,10 +77,10 @@ class Map
 			x2 = points[@current_route][i + 1].x + 20
 			y2 = points[@current_route][i + 1].y + 20
 
-			@map_with_line_img.line(x1 ,y1 ,x2 ,y2 ,[255,255,255])
-			@map_with_line_img.line(x1+1 ,y1+1 ,x2+2 ,y2+2 ,[255,255,255])
-			@map_with_line_img.line(x1-1 ,y1-1 ,x2-1 ,y2-1 ,[255,255,255])
-			@map_with_line_img.line(x1+1 ,y1+1 ,x2+1 ,y2+1 ,[255,255,255])
+			@map_with_line_img.line(x1 ,y1 ,x2 ,y2 ,[0,0,0])
+			@map_with_line_img.line(x1+1 ,y1+1 ,x2+2 ,y2+2 ,[0,0,0])
+			@map_with_line_img.line(x1-1 ,y1-1 ,x2-1 ,y2-1 ,[0,0,0])
+			@map_with_line_img.line(x1+1 ,y1+1 ,x2+1 ,y2+1 ,[0,0,0])
 
 		end
 
