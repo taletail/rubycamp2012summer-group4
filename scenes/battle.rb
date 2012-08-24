@@ -63,7 +63,7 @@ class Battle
     case @select
     when 0
       @item_ef = Image.load("./images/shizimi.png")
-      sound = Sound.new("./sound./shizimi.wav")
+      @sound_battle = Sound.new("./sound./shizimi.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -72,7 +72,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 1
       @item_ef = Image.load("./images/soroban.png")
-      sound = Sound.new("./sound./soroban.wav")
+      @sound_battle = Sound.new("./sound./soroban.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -81,7 +81,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 2
       @item_ef = Image.load("./images/soumen.png")
-      sound = Sound.new("./sound./soumen.wav")
+      @sound_battle = Sound.new("./sound./soumen.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -90,8 +90,8 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 3
       if @count == 1
-        sound = Sound.new("./sound./tatara.wav")
-        sound.play
+        @sound_battle = Sound.new("./sound./tatara.wav")
+        @sound_battle.play
       end
       @item_ef = Image.load("./images/nihonto.png")
       @draw_x += 6
@@ -103,7 +103,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     when 4
       @item_ef = Image.load("./images/tobiuo.png")
-      sound = Sound.new("./sound./tobiuo.wav")
+      @sound_battle = Sound.new("./sound./tobiuo.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -111,7 +111,7 @@ class Battle
       Window.drawScale(@draw_x, @draw_y, @item_ef, @scale_x, @scale_y)
     when 5
       @item_ef = Image.load("./images/wine.png")
-      sound = Sound.new("./sound./wine.wav")
+      @sound_battle = Sound.new("./sound./wine.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -135,7 +135,7 @@ class Battle
       end
 
       @item_ef = Image.load("./images/#{player_image}")
-      sound = Sound.new("./sound./sude.wav")
+      @sound_battle = Sound.new("./sound./sude.wav")
       @draw_x += 6
       @draw_y -= 2
       @scale_x += 0.015
@@ -144,7 +144,7 @@ class Battle
       Window.drawEx(@draw_x, @draw_y, @item_ef, {:scalex => @scale_x, :scaley => @scale_y, :angle => @spin})
     end
     if @draw_x == 500
-      sound.play if @select != 3
+      @sound_battle.play if @select != 3
       @draw_x = 200
       @draw_y = 300
       @scale_x = -1.00
@@ -157,12 +157,14 @@ class Battle
     Window.drawFont(300, 400, "#{@message2}", @font)
     if @orochi_hp <= 0
       $won = 1 
+      @sound_battle.stop
       Scene.set_scene(:goend)
     elsif $player.hp > 0
       Window.drawFont(300, 430, "#{@message3}", @font)
       Window.drawFont(300, 460, "#{@message4}", @font)
     else
       $won = 2 if $player.hp <= 0
+      @sound_battle.stop
       Scene.set_scene(:ending)
     end
 #   HP•`ŽÊ

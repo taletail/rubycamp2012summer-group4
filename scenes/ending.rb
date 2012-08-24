@@ -55,16 +55,18 @@ class Ending
 	end
   
 	def play
+    
     if Input.keyPush?(K_RETURN)
 			exit
     end
 		if @won
-      Window.draw(0,0,@ending)
+            $bgm_go_end.stop
+            Window.draw(0,0,@ending)
 			if @sound_played == 0
 				@end_se.play
 				@sound_played = 1
 			end
-    else
+        else
 			@counter += 1
 			animation
 		end
